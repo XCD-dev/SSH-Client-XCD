@@ -35,16 +35,16 @@ jobs:
         include:
           - label: Windows x64
             runner: windows-2025
-            script: dist:win
+            args: --win nsis portable --x64
           - label: Linux x64
             runner: ubuntu-24.04
-            script: dist:linux
+            args: --linux AppImage --x64
           - label: macOS arm64
             runner: macos-15
-            script: dist:mac:arm64
+            args: --mac dmg --arm64
           - label: macOS x64
             runner: macos-15-intel
-            script: dist:mac:x64
+            args: --mac dmg --x64
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -54,7 +54,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint
-      - run: npm run ${{ matrix.script }} -- --publish=never
+      - run: node ./node_modules/electron-builder/cli.js ${{ matrix.args }} --publish=never
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: xcd-release-${{ matrix.label }}
