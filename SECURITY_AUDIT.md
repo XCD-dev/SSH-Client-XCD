@@ -35,12 +35,11 @@ finding still requires monitoring and review before each release.
    bundle until those obligations are resolved. See
    [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 2. **Runtime verification is pending.** GitHub CI successfully packaged
-   Windows x64, Linux x64, macOS arm64, and macOS x64. Installation and real SSH
+   Windows x64, Linux x64, macOS arm64, and the formerly configured macOS x64.
+   Intel Macs are no longer supported. Installation and real SSH
    flows have not been verified on every platform. The macOS and Windows
    packages are unsigned; macOS notarization is not configured. Debian packaging
    is disabled until project homepage and maintainer email metadata are available.
-   The bundled macOS sing-box is arm64; Intel Macs require an x64 sing-box on
-   `PATH` for optional VPN routing.
 
 The private GitHub repository was initialized from a clean snapshot with a
 GitHub no-reply author address. The original local checkout retains its own
@@ -128,7 +127,7 @@ Before making the repository public or creating a release:
   credential if one is found.
 - Complete package-level third-party notices and review the sing-box and
   Cronet/Chromium license obligations for every distributed platform.
-- Verify install/launch behavior on Windows, Linux, macOS arm64, and macOS x64.
+- Verify install/launch behavior on Windows, Linux, and macOS arm64.
 - Exercise real SSH password login, host-key mismatch, terminal, reconnect,
   multiple sessions, SFTP upload, and app shutdown on supported hosts. SSH key
   authentication and SFTP download remain unsupported features.

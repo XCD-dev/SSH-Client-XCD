@@ -34,9 +34,7 @@ The client does not currently support SSH private key authentication or an SSH a
 
 ## Platforms and packaging
 
-Build targets are Windows x64 (NSIS installer and portable EXE), Linux x64 (AppImage), and macOS arm64 and x64 (DMG). The Debian target is disabled until a public project homepage and maintainer email are configured. Build results and remaining runtime checks are recorded in [the security audit](SECURITY_AUDIT.md).
-
-The bundled macOS sing-box executable is arm64. On Intel Macs, optional VPN routing requires a compatible x64 sing-box executable available on `PATH`.
+Build targets are Windows x64 (NSIS installer and portable EXE), Linux x64 (AppImage), and macOS arm64 (Apple Silicon DMG). Intel Macs are not supported. The Debian target is disabled until a public project homepage and maintainer email are configured. Build results and remaining runtime checks are recorded in [the security audit](SECURITY_AUDIT.md).
 
 ## Development
 
@@ -55,7 +53,6 @@ Packaging commands:
 npm run dist:win
 npm run dist:linux
 npm run dist:mac:arm64
-npm run dist:mac:x64
 ```
 
 Build output is written to `release/`. macOS and Windows distribution signing and notarization are not configured. Do not describe generated packages as signed or notarized.

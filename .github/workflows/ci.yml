@@ -42,9 +42,6 @@ jobs:
           - label: macOS arm64
             runner: macos-15
             args: --mac dmg --arm64
-          - label: macOS x64
-            runner: macos-15-intel
-            args: --mac dmg --x64
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
