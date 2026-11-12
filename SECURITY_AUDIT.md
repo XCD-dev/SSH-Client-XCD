@@ -74,8 +74,7 @@ are currently reported.
   existed outside the scanned files and Git history. `seed.txt` is excluded
   from the configured package file list.
 - The owner confirmed ownership of the original application and checked-in
-  binary files. The app was developed first on Windows 10/11 and later ported
-  to macOS. Apache-2.0 applies to original project code; it does not replace
+  binary files. Apache-2.0 applies to original project code; it does not replace
   third-party licenses or notices.
 - Verified release archive digests against GitHub release metadata and compared
   the checked-in sing-box and Cronet payload SHA-256 values to the extracted
