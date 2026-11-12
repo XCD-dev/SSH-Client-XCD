@@ -38,9 +38,10 @@ not present in the release assets.
 
 For review, 35 upstream license, copyright, and notice files found in the pinned
 source tree are collected in [the Chromium source license index](third_party_licenses/chromium-source/INDEX.md).
-Their upstream Git blob hashes were verified. This source-tree collection is
-not a build-specific dependency inventory and may omit notices stored under
-other names.
+Their upstream Git blob hashes were verified. The [metadata cross-check](third_party_licenses/chromium-source/METADATA.md)
+covers 37 upstream metadata files and all 31 unique license paths they reference.
+This source-tree collection is not a build-specific dependency inventory and may
+omit notices stored under other names.
 
 ## Bundled sing-box assets
 
