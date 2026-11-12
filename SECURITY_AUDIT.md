@@ -89,7 +89,7 @@ are currently reported.
   graph of each Cronet library.
 - Prepared a local upstream source candidate with both sing-box versions, the
   pinned cronet-go and NaiveProxy revisions, and the 122 Go module source zips.
-  All 251 listed files passed SHA-256 verification. The candidate has not been
+  All 252 listed files passed SHA-256 verification. The candidate has not been
   verified as complete corresponding source and has not been distributed.
   Some exact upstream module zips contain precompiled DLLs, object files, and
   test executables, which must be reviewed before this candidate is distributed.

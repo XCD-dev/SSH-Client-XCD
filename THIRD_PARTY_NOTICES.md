@@ -25,8 +25,10 @@ The app bundle includes the package-provided MIT, BSD-3-Clause, and Unlicense
 texts above, plus Electron and Chromium license files. The GPL-3.0 text, the
 upstream sing-box license notice, and the cronet-go license text are included
 under [`third_party_licenses/`](third_party_licenses/). Cronet's full
-Chromium-derived notice inventory is still pending. Both Cronet payloads trace
-to Chromium 148.0.7778.96. The Chromium BSD-style license is included as
+Chromium-derived notice inventory is still pending. The Linux and Windows shared
+libraries match the Cronet v148.0.7778.96-1 release. The macOS arm64 sing-box
+is CGO-enabled and includes a Cronet library module, so it requires its own
+notice review. The Chromium BSD-style license is included as
 [`Chromium-LICENSE.txt`](third_party_licenses/Chromium-LICENSE.txt), but this
 does not cover the separate third-party libraries linked into Cronet. The
 upstream version and license are recorded in [NaiveProxy's pinned version
@@ -47,7 +49,7 @@ omit notices stored under other names.
 
 | Asset | Verified provenance | License and notice status |
 |---|---|---|
-| `bin/sing-box/macos/sing-box` | Byte-for-byte match to SagerNet sing-box v1.13.14 `darwin-arm64` release archive. Archive and payload hashes are in [`bin/sing-box/README.md`](bin/sing-box/README.md). | GPL-3.0-or-later plus upstream name/association restriction. Review the extra term and include license/source materials before redistribution. See [`sing-box-LICENSE.txt`](third_party_licenses/sing-box-LICENSE.txt) and [`GPL-3.0.txt`](third_party_licenses/GPL-3.0.txt). |
+| `bin/sing-box/macos/sing-box` | Byte-for-byte match to SagerNet sing-box v1.13.14 `darwin-arm64` release archive. Archive and payload hashes are in [`bin/sing-box/README.md`](bin/sing-box/README.md). | GPL-3.0-or-later plus upstream name/association restriction. The CGO-enabled binary includes a Cronet library module and also needs its Chromium-derived notices reviewed. See [`sing-box-LICENSE.txt`](third_party_licenses/sing-box-LICENSE.txt) and [`GPL-3.0.txt`](third_party_licenses/GPL-3.0.txt). |
 | `bin/sing-box/linux/sing-box` | Byte-for-byte match to SagerNet sing-box v1.13.14 `linux-amd64` release archive. | Same sing-box license terms as above. |
 | `bin/sing-box/win32/sing-box.exe` | Byte-for-byte match to SagerNet sing-box v1.13.12 `windows-amd64` release archive. | Same sing-box license terms as above. |
 | `bin/sing-box/{linux,win32}/libcronet.*` | Byte-for-byte match to the Linux v1.13.14 and Windows v1.13.12 sing-box release archives. Both pinned `cronet-go` revisions use Chromium 148.0.7778.96; see [`bin/sing-box/README.md`](bin/sing-box/README.md). | `cronet-go` is GPL-3.0-or-later; its license text is [`cronet-go-LICENSE.txt`](third_party_licenses/cronet-go-LICENSE.txt). Chromium's BSD-style license is included. The official Cronet release assets contain the shared libraries but no generated Chromium third-party credits page. That full, build-specific notice inventory remains outstanding. |
@@ -60,7 +62,7 @@ provenance, not that all redistribution obligations have been completed.
 
 - sing-box v1.13.14 (macOS arm64 and Linux x64): [source tag](https://github.com/SagerNet/sing-box/tree/v1.13.14) and [source archive](https://github.com/SagerNet/sing-box/archive/refs/tags/v1.13.14.tar.gz).
 - sing-box v1.13.12 (Windows x64): [source tag](https://github.com/SagerNet/sing-box/tree/v1.13.12) and [source archive](https://github.com/SagerNet/sing-box/archive/refs/tags/v1.13.12.tar.gz).
-- cronet-go revisions: [Linux v1.13.14 dependency](https://github.com/SagerNet/cronet-go/tree/98d539ce67568fb911654e66a14cf4247ed833ec) and [Windows v1.13.12 dependency](https://github.com/SagerNet/cronet-go/tree/2faf34666c2cc8234f10f2ab6d4c4d6104d34ae2). Both reference [NaiveProxy commit 888e114](https://github.com/SagerNet/naiveproxy/tree/888e114241c89b05fac4e4ee01482d7bd89ca15a), which includes the Chromium-derived source and its dependency metadata.
+- cronet-go revisions: the macOS/Linux v1.13.14 binaries embed [binding commit 05ab0dc](https://github.com/SagerNet/cronet-go/tree/05ab0dc17597f5473eb60d3864c7072273b1b2cf), and the v1.13.14 release pins [build-source commit 98d539c](https://github.com/SagerNet/cronet-go/tree/98d539ce67568fb911654e66a14cf4247ed833ec). The Windows v1.13.12 binary embeds [binding commit 2faf346](https://github.com/SagerNet/cronet-go/tree/2faf34666c2cc8234f10f2ab6d4c4d6104d34ae2); the Linux and Windows shared libraries match [release commit e7f6f6f](https://github.com/SagerNet/cronet-go/tree/e7f6f6f5b7ce226f686f6cb5d068a63da6657ccd). These source revisions reference [NaiveProxy commit 888e114](https://github.com/SagerNet/naiveproxy/tree/888e114241c89b05fac4e4ee01482d7bd89ca15a).
 
 These references identify source revisions for investigation. They are not yet
 verified as a complete corresponding-source package for the distributed
