@@ -63,7 +63,10 @@ Chromium third-party notices still need to be collected and checked.
 The module metadata embedded in the binaries was extracted with `go version -m`
 and is recorded in [the dependency inventory](docs/upstream/sing-box-dependencies.txt).
 It lists 95 macOS, 104 Linux, and 100 Windows modules; module names and versions
-alone do not establish their individual licenses or complete notice obligations.
+represent 122 unique module versions. All downloaded module checksums matched
+the embedded metadata, and their root license and notice files are collected in
+[the Go module license index](third_party_licenses/go-modules/INDEX.md).
+Nested notices and other distribution obligations still need review.
 
 ## Required completion before release
 
