@@ -1,6 +1,6 @@
 # Go module license files
 
-These files are copied from the root of the Go modules embedded in the bundled sing-box executables. All 122 downloaded module checksums match the metadata embedded in the executables. Root license files alone do not prove that all nested notices or other distribution obligations are covered.
+These files are copied from the Go modules embedded in the bundled sing-box executables. All 122 downloaded module checksums match the metadata embedded in the executables. License files found by name do not prove that all notices or other distribution obligations are covered.
 
 | ID | Module | Version | Files |
 |---|---|---|---|
@@ -126,3 +126,28 @@ These files are copied from the root of the Go modules embedded in the bundled s
 | 0120 | `golang.zx2c4.com/wireguard/wgctrl` | `v0.0.0-20241231184526-a9ab2273dd10` | [LICENSE.md](0120/LICENSE.md) |
 | 0121 | `golang.zx2c4.com/wireguard/windows` | `v0.5.3` | [COPYING](0121/COPYING) |
 | 0122 | `lukechampine.com/blake3` | `v1.3.0` | [LICENSE](0122/LICENSE) |
+
+## Additional nested license and notice files
+
+These source-tree files may cover bundled or unused code; their presence does not establish the compiled package dependency graph.
+
+| Module ID | Upstream path | Copied file |
+|---|---|---|
+| 0038 | `s2/LICENSE` | [file](0038/nested/s2/LICENSE) |
+| 0038 | `s2/cmd/internal/readahead/LICENSE` | [file](0038/nested/s2/cmd/internal/readahead/LICENSE) |
+| 0038 | `s2/cmd/internal/filepathx/LICENSE` | [file](0038/nested/s2/cmd/internal/filepathx/LICENSE) |
+| 0038 | `internal/snapref/LICENSE` | [file](0038/nested/internal/snapref/LICENSE) |
+| 0038 | `internal/lz4ref/LICENSE` | [file](0038/nested/internal/lz4ref/LICENSE) |
+| 0038 | `gzhttp/LICENSE` | [file](0038/nested/gzhttp/LICENSE) |
+| 0038 | `snappy/LICENSE` | [file](0038/nested/snappy/LICENSE) |
+| 0038 | `snappy/xerial/LICENSE` | [file](0038/nested/snappy/xerial/LICENSE) |
+| 0038 | `zstd/internal/xxhash/LICENSE.txt` | [file](0038/nested/zstd/internal/xxhash/LICENSE.txt) |
+| 0047 | `dicttls/LICENSE` | [file](0047/nested/dicttls/LICENSE) |
+| 0071 | `assets/LICENSE.md` | [file](0071/nested/assets/LICENSE.md) |
+| 0072 | `contrab/freelru/LICENSE` | [file](0072/nested/contrab/freelru/LICENSE) |
+| 0072 | `contrab/freelru/NOTICE` | [file](0072/nested/contrab/freelru/NOTICE) |
+| 0073 | `contrab/freelru/LICENSE` | [file](0073/nested/contrab/freelru/LICENSE) |
+| 0073 | `contrab/freelru/NOTICE` | [file](0073/nested/contrab/freelru/NOTICE) |
+| 0084 | `tempfork/gliderlabs/ssh/LICENSE` | [file](0084/nested/tempfork/gliderlabs/ssh/LICENSE) |
+| 0084 | `tempfork/spf13/cobra/LICENSE.txt` | [file](0084/nested/tempfork/spf13/cobra/LICENSE.txt) |
+| 0084 | `derp/xdp/headers/LICENSE.BSD-2-Clause` | [file](0084/nested/derp/xdp/headers/LICENSE.BSD-2-Clause) |

@@ -12,3 +12,6 @@
 *.dll binary
 *.so binary
 *.pdf binary
+# Preserve upstream license files byte-for-byte, including their original line endings.
+third_party_licenses/go-modules/** -text
+third_party_licenses/chromium-source/** -text

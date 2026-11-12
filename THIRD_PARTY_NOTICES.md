@@ -36,6 +36,12 @@ Chromium documents its third-party credits as output generated from dependency
 metadata by its license tooling; the required output for this Cronet build is
 not present in the release assets.
 
+For review, 35 upstream license, copyright, and notice files found in the pinned
+source tree are collected in [the Chromium source license index](third_party_licenses/chromium-source/INDEX.md).
+Their upstream Git blob hashes were verified. This source-tree collection is
+not a build-specific dependency inventory and may omit notices stored under
+other names.
+
 ## Bundled sing-box assets
 
 | Asset | Verified provenance | License and notice status |
@@ -64,9 +70,9 @@ The module metadata embedded in the binaries was extracted with `go version -m`
 and is recorded in [the dependency inventory](docs/upstream/sing-box-dependencies.txt).
 It lists 95 macOS, 104 Linux, and 100 Windows modules; module names and versions
 represent 122 unique module versions. All downloaded module checksums matched
-the embedded metadata, and their root license and notice files are collected in
-[the Go module license index](third_party_licenses/go-modules/INDEX.md).
-Nested notices and other distribution obligations still need review.
+the embedded metadata, and their root and identified nested license and notice
+files are collected in [the Go module license index](third_party_licenses/go-modules/INDEX.md).
+Notices stored under other names and other distribution obligations still need review.
 
 ## Required completion before release
 
