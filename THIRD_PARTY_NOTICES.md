@@ -69,12 +69,14 @@ verified as a complete corresponding-source package for the distributed
 binaries: the recursive dependencies, build scripts, and full build-specific
 Chromium third-party notices still need to be collected and checked.
 
-For reproducing the missing target-specific Cronet notice inventory, the pinned
-[`build-naive` implementation](https://github.com/SagerNet/cronet-go/blob/98d539ce67568fb911654e66a14cf4247ed833ec/cmd/build-naive/cmd_build.go)
+For reproducing the missing target-specific Cronet notice inventory, the
+[`v148.0.7778.96-1` build implementation](https://github.com/SagerNet/cronet-go/blob/e7f6f6f5b7ce226f686f6cb5d068a63da6657ccd/cmd/build-naive/cmd_build.go)
 generates an architecture-specific GN output directory and builds the `cronet`
-target for the Windows DLL and Linux shared library. The source-tree license
-collection above must be checked against each matching target's generated GN
-dependency graph; an Android or Electron notice list is not a substitute.
+target for the Windows DLL and Linux shared library. The macOS static library's
+[build-source revision](https://github.com/SagerNet/cronet-go/blob/98d539ce67568fb911654e66a14cf4247ed833ec/cmd/build-naive/cmd_build.go)
+uses the `cronet_static` target. The source-tree collection above must be
+checked against each matching target's generated GN dependency graph; an Android
+or Electron notice list is not a substitute.
 
 The module metadata embedded in the binaries was extracted with `go version -m`
 and is recorded in [the dependency inventory](docs/upstream/sing-box-dependencies.txt).
