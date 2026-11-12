@@ -54,6 +54,15 @@ omit notices stored under other names.
 | `bin/sing-box/win32/sing-box.exe` | Byte-for-byte match to SagerNet sing-box v1.13.12 `windows-amd64` release archive. | Same sing-box license terms as above. |
 | `bin/sing-box/{linux,win32}/libcronet.*` | Byte-for-byte match to the Linux v1.13.14 and Windows v1.13.12 sing-box release archives. Both pinned `cronet-go` revisions use Chromium 148.0.7778.96; see [`bin/sing-box/README.md`](bin/sing-box/README.md). | `cronet-go` is GPL-3.0-or-later; its license text is [`cronet-go-LICENSE.txt`](third_party_licenses/cronet-go-LICENSE.txt). Chromium's BSD-style license is included. The official Cronet release assets contain the shared libraries but no generated Chromium third-party credits page. That full, build-specific notice inventory remains outstanding. |
 
+The Windows sing-box executable also embeds Wintun 0.14.1's amd64 DLL through
+`github.com/sagernet/sing-tun` v0.8.9. Its embedded bytes match the DLL in the
+[official Wintun archive](https://www.wintun.net/builds/wintun-0.14.1.zip)
+(archive SHA-256 `07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51`).
+Wintun's prebuilt binaries have separate redistribution terms, reproduced
+unchanged in [`wintun-0.14.1-LICENSE.txt`](third_party_licenses/wintun-0.14.1-LICENSE.txt).
+Review those terms for this distribution; the Go module's MIT notice alone does
+not cover the prebuilt DLL.
+
 The archive digest metadata and each checked-in binary's SHA-256 were verified
 against the official release payloads. This proves payload identity and
 provenance, not that all redistribution obligations have been completed.
