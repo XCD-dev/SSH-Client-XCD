@@ -81,6 +81,18 @@ are currently reported.
   the checked-in sing-box and Cronet payload SHA-256 values to the extracted
   official assets. Windows uses sing-box v1.13.12; macOS arm64 and Linux amd64
   use v1.13.14. Details are recorded in `bin/sing-box/README.md`.
+- Collected root and identified nested license files for 122 Go module versions;
+  each downloaded module checksum matched the metadata embedded in sing-box.
+  Collected 35 license and notice files from the pinned Chromium-derived source
+  tree and verified the 31 unique license paths referenced in its metadata.
+  These source-tree inventories do not establish the exact compiled dependency
+  graph of each Cronet library.
+- Prepared a local upstream source candidate with both sing-box versions, the
+  pinned cronet-go and NaiveProxy revisions, and the 122 Go module source zips.
+  All 251 listed files passed SHA-256 verification. The candidate has not been
+  verified as complete corresponding source and has not been distributed.
+  Some exact upstream module zips contain precompiled DLLs, object files, and
+  test executables, which must be reviewed before this candidate is distributed.
 - Reviewed the packaged npm runtime dependency closure: eight packages use
   MIT, BSD-3-Clause, or Unlicense. Electron and Chromium license texts are
   present in the built macOS app; electron-builder is build-only. The complete
