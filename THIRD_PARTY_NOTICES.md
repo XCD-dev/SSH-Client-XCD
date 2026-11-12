@@ -60,6 +60,11 @@ verified as a complete corresponding-source package for the distributed
 binaries: the recursive dependencies, build scripts, and full build-specific
 Chromium third-party notices still need to be collected and checked.
 
+The module metadata embedded in the binaries was extracted with `go version -m`
+and is recorded in [the dependency inventory](docs/upstream/sing-box-dependencies.txt).
+It lists 95 macOS, 104 Linux, and 100 Windows modules; module names and versions
+alone do not establish their individual licenses or complete notice obligations.
+
 ## Required completion before release
 
 - Produce a package-level inventory of all shipped runtime dependencies and
