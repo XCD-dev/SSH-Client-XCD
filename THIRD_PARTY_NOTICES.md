@@ -61,7 +61,10 @@ The Windows sing-box executable also embeds Wintun 0.14.1's amd64 DLL through
 Wintun's prebuilt binaries have separate redistribution terms, reproduced
 unchanged in [`wintun-0.14.1-LICENSE.txt`](third_party_licenses/wintun-0.14.1-LICENSE.txt).
 Review those terms for this distribution; the Go module's MIT notice alone does
-not cover the prebuilt DLL.
+not cover the prebuilt DLL. Its upstream GPLv2 source is available at
+[Wintun 0.14.1](https://git.zx2c4.com/wintun/tag/?h=0.14.1),
+commit `bfef136abfa1665c2592be09a7e383d646cdbe6e`; the release's source archive
+was checked against that commit's Git blobs.
 
 The archive digest metadata and each checked-in binary's SHA-256 were verified
 against the official release payloads. This proves payload identity and

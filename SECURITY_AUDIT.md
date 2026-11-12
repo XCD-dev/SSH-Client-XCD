@@ -34,6 +34,10 @@ finding still requires monitoring and review before each release.
    GPL source or compliant source offer are not. Do not distribute the app
    bundle until those obligations are resolved. See
    [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+   The Windows binary also embeds the official Wintun 0.14.1 DLL, whose
+   prebuilt-binary license has separate redistribution restrictions. Its
+   exact license text is included, but its terms for this distribution
+   still require review.
 2. **Runtime verification is pending.** GitHub CI successfully packaged
    Windows x64, Linux x64, macOS arm64, and the formerly configured macOS x64.
    Intel Macs are no longer supported. Installation and real SSH
@@ -88,8 +92,8 @@ are currently reported.
   These source-tree inventories do not establish the exact compiled dependency
   graph of each Cronet library.
 - Prepared a local upstream source candidate with both sing-box versions, the
-  pinned cronet-go and NaiveProxy revisions, and the 122 Go module source zips.
-  All 252 listed files passed SHA-256 verification. The candidate has not been
+  pinned cronet-go and NaiveProxy revisions, Wintun 0.14.1 source, and the 122
+  Go module source zips. All 253 listed files passed SHA-256 verification. The candidate has not been
   verified as complete corresponding source and has not been distributed.
   Some exact upstream module zips contain precompiled DLLs, object files, and
   test executables, which must be reviewed before this candidate is distributed.
