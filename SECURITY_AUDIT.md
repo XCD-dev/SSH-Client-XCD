@@ -34,20 +34,15 @@ finding still requires monitoring and review before each release.
    GPL source or compliant source offer are not. Do not distribute the app
    bundle until those obligations are resolved. See
    [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-2. **Git identity needs cleanup before a public push.** The three existing
-   commits' author metadata contains local account and host-derived values.
-   History was not rewritten. Review and sanitize the author metadata before
-   publishing the repository.
-3. **No GitHub remote is configured.** The intended XCD organization/repository
-   and account permissions are not established from this checkout.
-4. **Native verification is pending.** macOS arm64 and x64 DMGs and Linux x64
-   AppImage were built in temporary paths. The Windows x64 NSIS target emitted
-   an installer output, but its installability is not verified. The combined
-   Windows build stops when the portable target invokes Wine, which fails to
-   initialize `kernel32.dll` in the local amd64-emulated Docker environment. A
-   native Windows CI build is still required. Debian packaging is disabled
-   until project homepage and maintainer email metadata are available. CI has
-   not run, and native launch/SSH flows were not verified on all platforms.
+2. **Runtime verification is pending.** GitHub CI successfully packaged
+   Windows x64, Linux x64, macOS arm64, and macOS x64. Installation and real SSH
+   flows have not been verified on every platform. The macOS and Windows
+   packages are unsigned; macOS notarization is not configured. Debian packaging
+   is disabled until project homepage and maintainer email metadata are available.
+
+The private GitHub repository was initialized from a clean snapshot with a
+GitHub no-reply author address. The original local checkout retains its own
+history and uncommitted changes; its historical author metadata was not uploaded.
 
 These are release blockers even though no Critical or High npm audit findings
 are currently reported.
@@ -132,10 +127,7 @@ Before making the repository public or creating a release:
   credential if one is found.
 - Complete package-level third-party notices and review the sing-box and
   Cronet/Chromium license obligations for every distributed platform.
-- Review or sanitize local author metadata without publishing personal host
-  details.
-- Run the CI workflow on all four build targets and verify install/launch
-  behavior on Windows, Linux, macOS arm64, and macOS x64.
+- Verify install/launch behavior on Windows, Linux, macOS arm64, and macOS x64.
 - Exercise real SSH password login, host-key mismatch, terminal, reconnect,
   multiple sessions, SFTP upload, and app shutdown on supported hosts. SSH key
   authentication and SFTP download remain unsupported features.

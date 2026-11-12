@@ -49,6 +49,17 @@ The archive digest metadata and each checked-in binary's SHA-256 were verified
 against the official release payloads. This proves payload identity and
 provenance, not that all redistribution obligations have been completed.
 
+## Pinned upstream source references
+
+- sing-box v1.13.14 (macOS arm64 and Linux x64): [source tag](https://github.com/SagerNet/sing-box/tree/v1.13.14) and [source archive](https://github.com/SagerNet/sing-box/archive/refs/tags/v1.13.14.tar.gz).
+- sing-box v1.13.12 (Windows x64): [source tag](https://github.com/SagerNet/sing-box/tree/v1.13.12) and [source archive](https://github.com/SagerNet/sing-box/archive/refs/tags/v1.13.12.tar.gz).
+- cronet-go revisions: [Linux v1.13.14 dependency](https://github.com/SagerNet/cronet-go/tree/98d539ce67568fb911654e66a14cf4247ed833ec) and [Windows v1.13.12 dependency](https://github.com/SagerNet/cronet-go/tree/2faf34666c2cc8234f10f2ab6d4c4d6104d34ae2). Both reference [NaiveProxy commit 888e114](https://github.com/SagerNet/naiveproxy/tree/888e114241c89b05fac4e4ee01482d7bd89ca15a), which includes the Chromium-derived source and its dependency metadata.
+
+These references identify source revisions for investigation. They are not yet
+verified as a complete corresponding-source package for the distributed
+binaries: the recursive dependencies, build scripts, and full build-specific
+Chromium third-party notices still need to be collected and checked.
+
 ## Required completion before release
 
 - Produce a package-level inventory of all shipped runtime dependencies and
