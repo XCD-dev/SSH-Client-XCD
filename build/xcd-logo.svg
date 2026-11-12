@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200">
+  <rect width="720" height="200" rx="20" fill="#ffffff"/>
+  <g transform="translate(28 28)">
+    <rect width="144" height="144" rx="34" fill="#151c24"/>
+    <path d="M43 52 86 72 43 92" fill="none" stroke="#67d7c9" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+    <path d="M98 92h20" fill="none" stroke="#67d7c9" stroke-linecap="round" stroke-width="12"/>
+  </g>
+  <text x="202" y="112" fill="#18212b" font-family="Avenir Next, system-ui, sans-serif" font-size="92" font-weight="700" letter-spacing="2">XCD</text>
+  <text x="208" y="151" fill="#586773" font-family="Avenir Next, system-ui, sans-serif" font-size="21" font-weight="600" letter-spacing="6">SSH CLIENT</text>
+</svg>

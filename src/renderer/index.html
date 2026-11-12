@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XCD SSH Client</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main id="app"></main>
+    <template id="login-template">
+      <section class="login-screen">
+        <div class="login-layout">
+          <form class="login-panel" id="login-form">
+            <div class="brand">
+              <div class="brand-mark">XCD</div>
+              <div>
+                <h1>XCD SSH Client</h1>
+                <p>Secure remote administration</p>
+              </div>
+            </div>
+
+            <div class="connection-grid">
+              <label>
+                <span>IP address</span>
+                <input id="host" name="host" placeholder="192.168.1.10" autocomplete="off" required>
+              </label>
+              <label>
+                <span>Port</span>
+                <input id="port" name="port" type="number" min="1" max="65535" step="1" value="22" placeholder="22" inputmode="numeric" required>
+              </label>
+            </div>
+            <label>
+              <span>Login</span>
+              <input id="username" name="username" placeholder="root" autocomplete="username" required>
+            </label>
+            <label>
+              <span>Password</span>
+              <div class="password-field">
+                <input id="password" name="password" type="password" autocomplete="current-password" required>
+              </div>
+            </label>
+            <button class="primary-btn" type="submit">Connect</button>
+            <p class="form-error" id="login-error"></p>
+            <button class="about-button" id="about-button" type="button">About XCD SSH Client</button>
+            <button class="theme-toggle" data-theme-toggle type="button">Use light theme</button>
+          </form>
+
+          <section class="saved-panel">
+            <div class="panel-header">
+              <h3>Saved Servers</h3>
+            </div>
+            <div class="panel-body">
+              <input id="server-search" placeholder="Search servers" autocomplete="off">
+              <div class="saved-server-list" id="saved-server-list"></div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </template>
+
+    <template id="dashboard-template">
+      <section class="dashboard">
+        <aside class="sidebar">
+          <div class="sidebar-title">XCD SSH Client</div>
+          <nav class="nav">
+            <button class="nav-item active" data-view="status">Status / Logs</button>
+            <button class="nav-item" data-view="files">File Manager</button>
+            <button class="nav-item" data-view="terminal">Terminal</button>
+            <button class="nav-item" data-view="vpn">VPN</button>
+            <button class="nav-item" data-view="bots">Центр управления</button>
+            <button class="nav-item" data-view="system">System Info</button>
+          </nav>
+          <div class="session-switcher">
+            <p class="eyebrow">Servers</p>
+            <div class="session-list" id="session-list"></div>
+          </div>
+          <button class="theme-toggle" data-theme-toggle type="button">Use light theme</button>
+          <button class="about-button" id="about-button" type="button">About XCD SSH Client</button>
+          <button class="disconnect-btn" id="disconnect-button">Disconnect</button>
+        </aside>
+        <section class="content">
+          <header class="topbar">
+            <div>
+              <p class="eyebrow">Active session</p>
+              <h2 id="view-title">Status / Logs</h2>
+              <p class="active-server-line" id="active-server-line"></p>
+            </div>
+            <div class="topbar-actions">
+              <button class="secondary-btn" id="new-session-button">New Session</button>
+              <button class="secondary-btn" id="save-server-button">Save Server</button>
+              <span class="status-pill online" id="status-pill">online</span>
+            </div>
+          </header>
+          <section class="view active" id="status-view"></section>
+          <section class="view" id="files-view"></section>
+          <section class="view" id="terminal-view"></section>
+          <section class="view" id="vpn-view"></section>
+          <section class="view" id="bots-view"></section>
+          <section class="view" id="system-view"></section>
+        </section>
+      </section>
+    </template>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

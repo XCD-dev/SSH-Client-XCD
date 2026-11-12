@@ -1,0 +1,1389 @@
+:root {
+  color-scheme: dark;
+  --bg: #0e0f11;
+  --panel: #17181b;
+  --panel-2: #1d1f23;
+  --panel-3: #24262b;
+  --panel-4: #2b2e34;
+  --line: #2f3237;
+  --text: #e7e9ec;
+  --muted: #8a8f96;
+  --green: #4ade95;
+  --red: #ff6b6b;
+  --blue: #c7cad0;
+  --amber: #f4b942;
+  --surface-deep: #131417;
+  --surface-input: #101113;
+  --surface-sidebar: #0c0d0f;
+  --text-soft: #cbd0d5;
+  --text-code: #c9cdd2;
+  --button-primary: #d7dade;
+  --button-primary-text: #101113;
+  --button-primary-hover: #e7e9ec;
+  --danger-bg: #5b2226;
+  --danger-border: #6d2b30;
+  --danger-text: #ffd6d6;
+  --danger-muted-text: #ffb3b3;
+  --danger-hover: #692a2f;
+  --warning-text: #ffd98a;
+  --warning-bg: rgba(244, 185, 66, 0.06);
+  --warning-border: rgba(244, 185, 66, 0.3);
+  --surface-terminal: #0a0b0d;
+  --selection-bg: rgba(199, 202, 208, 0.3);
+  --selection-text: #fff;
+  --scroll-thumb: #2a2d31;
+  font-family: Inter, Segoe UI, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f1f3f5;
+  --panel: #ffffff;
+  --panel-2: #f5f6f8;
+  --panel-3: #e9edf1;
+  --panel-4: #dce2e8;
+  --line: #d2d8df;
+  --text: #20262d;
+  --muted: #59636e;
+  --green: #18784a;
+  --red: #a92f36;
+  --blue: #275c9a;
+  --amber: #805700;
+  --surface-deep: #f8f9fa;
+  --surface-input: #fbfcfd;
+  --surface-sidebar: #e9edf1;
+  --text-soft: #333b44;
+  --button-primary: #29343f;
+  --button-primary-text: #ffffff;
+  --button-primary-hover: #394754;
+  --danger-bg: #fde8e9;
+  --danger-border: #e7aeb2;
+  --danger-text: #8f252b;
+  --danger-muted-text: #8f252b;
+  --danger-hover: #f8d8da;
+  --warning-text: #715000;
+  --warning-bg: #fff8e6;
+  --warning-border: #e5d39b;
+  --selection-bg: rgba(39, 92, 154, 0.2);
+  --selection-text: #172331;
+  --scroll-thumb: #c4cbd2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 920px;
+  height: 100%;
+  min-height: 620px;
+  overflow: hidden;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.09), transparent 35%),
+    radial-gradient(circle at 78% 12%, rgba(0, 0, 0, 0.55), transparent 38%),
+    radial-gradient(circle at 62% 68%, rgba(255, 255, 255, 0.11), transparent 42%),
+    radial-gradient(circle at 12% 82%, rgba(0, 0, 0, 0.5), transparent 36%),
+    radial-gradient(circle at 92% 88%, rgba(255, 255, 255, 0.07), transparent 30%),
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1.4px);
+  background-size: cover, cover, cover, cover, cover, cover, 6px 6px;
+  position: relative;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+  background-clip: padding-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  min-height: 0;
+  accent-color: var(--blue);
+}
+
+.login-screen {
+  height: 100%;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.09), transparent 35%),
+    radial-gradient(circle at 78% 12%, rgba(0, 0, 0, 0.55), transparent 38%),
+    radial-gradient(circle at 62% 68%, rgba(255, 255, 255, 0.11), transparent 42%),
+    radial-gradient(circle at 12% 82%, rgba(0, 0, 0, 0.5), transparent 36%),
+    radial-gradient(circle at 92% 88%, rgba(255, 255, 255, 0.07), transparent 30%),
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1.4px);
+  background-size: cover, cover, cover, cover, cover, cover, 6px 6px;
+  position: relative;
+}
+
+.login-layout {
+  width: min(960px, calc(100vw - 48px));
+  display: grid;
+  grid-template-columns: minmax(360px, 420px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.login-panel {
+  display: grid;
+  gap: 18px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.saved-panel {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.saved-server-list {
+  max-height: 430px;
+  overflow: auto;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.saved-server-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-deep);
+  transition: border-color 0.1s ease;
+}
+
+.saved-server-card:hover {
+  border-color: #454b52;
+}
+
+.saved-server-main {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.saved-server-main strong,
+.saved-server-main span,
+.saved-server-main small {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.saved-server-main span,
+.saved-server-main small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.saved-server-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.saved-server-actions button {
+  min-height: 32px;
+  padding: 0 10px;
+}
+
+.brand {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: var(--panel-3);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.brand p,
+.eyebrow,
+.muted {
+  color: var(--muted);
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+.connection-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 112px;
+  gap: 12px;
+  align-items: end;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0 12px;
+  color: var(--text);
+  background: var(--surface-input);
+  outline: none;
+  transition: border-color 0.1s ease;
+}
+
+textarea {
+  min-height: 94px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.password-field {
+  position: relative;
+  display: grid;
+}
+
+select {
+  appearance: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--blue);
+}
+
+button {
+  min-height: 38px;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.1s ease, border-color 0.1s ease, opacity 0.1s ease;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+.primary-btn {
+  min-height: 44px;
+  background: var(--button-primary);
+  color: var(--button-primary-text);
+  font-weight: 600;
+}
+
+.primary-btn:not(:disabled):hover {
+  background: var(--button-primary-hover);
+}
+
+.secondary-btn {
+  padding: 0 14px;
+  background: var(--panel-3);
+  border: 1px solid var(--line);
+}
+
+.secondary-btn:not(:disabled):hover {
+  background: var(--panel-4);
+}
+
+.danger-btn {
+  padding: 0 14px;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid var(--danger-border);
+}
+
+.danger-btn:not(:disabled):hover {
+  background: var(--danger-hover);
+}
+
+.form-error {
+  min-height: 20px;
+  color: var(--red);
+  font-size: 14px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  /* Without an explicit row track, a grid's single implicit row sizes to
+     "auto" (its tallest child's natural content height) even though the
+     container itself has a definite height - so overflowing content would
+     silently grow past the window instead of triggering the internal
+     .view scrollbar. Pinning the row to 100% forces both columns to the
+     dashboard's real height so their own overflow:auto areas actually
+     kick in. */
+  grid-template-rows: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  gap: 18px;
+  padding: 20px 14px;
+  border-right: 1px solid var(--line);
+  background: var(--surface-sidebar);
+}
+
+.sidebar-title {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.nav {
+  display: grid;
+  gap: 4px;
+}
+
+.session-switcher {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  padding: 10px 4px;
+  border-top: 1px solid var(--line);
+}
+
+.session-list {
+  display: grid;
+  gap: 6px;
+}
+
+.session-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28px;
+  gap: 6px;
+  align-items: center;
+}
+
+.session-row.active .session-switch {
+  background: var(--panel-2);
+  color: var(--text);
+}
+
+.session-switch {
+  min-width: 0;
+  min-height: 40px;
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+}
+
+.session-switch:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.session-switch span:last-child {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.session-switch strong,
+.session-switch small {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.session-switch small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.session-close {
+  width: 28px;
+  min-height: 28px;
+  padding: 0;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+/* Saved (not-yet-connected) servers: single column (no close button) and a
+   dimmer, "ready to connect" look to set them apart from live sessions. */
+.session-row.saved {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.session-row.saved .session-switch {
+  opacity: 0.72;
+}
+
+.session-row.saved .session-switch:hover {
+  opacity: 1;
+}
+
+.session-row.saved .status-dot {
+  background: #565b62;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.status-dot.online {
+  background: var(--green);
+}
+
+.nav-item,
+.disconnect-btn {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0 12px;
+  text-align: left;
+  background: transparent;
+  border-left: 2px solid transparent;
+  border-radius: 5px;
+  color: var(--muted);
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+}
+
+.nav-item.active {
+  background: var(--panel-2);
+  border-left-color: var(--blue);
+  color: var(--text);
+}
+
+.disconnect-btn {
+  margin-top: auto;
+  background: var(--danger-bg);
+  color: var(--danger-muted-text);
+}
+
+.disconnect-btn:hover {
+  background: var(--danger-hover);
+}
+
+.about-button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 9px 12px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.about-button:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+.theme-toggle {
+  width: 100%;
+  min-height: 36px;
+  padding: 0 10px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  background: var(--panel-2);
+}
+
+.about-modal {
+  width: min(420px, calc(100vw - 36px));
+  text-align: center;
+}
+
+.about-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 14px;
+}
+
+.about-modal h2,
+.about-modal p {
+  margin: 8px 0;
+}
+
+.about-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.content {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.09), transparent 35%),
+    radial-gradient(circle at 78% 12%, rgba(0, 0, 0, 0.55), transparent 38%),
+    radial-gradient(circle at 62% 68%, rgba(255, 255, 255, 0.11), transparent 42%),
+    radial-gradient(circle at 12% 82%, rgba(0, 0, 0, 0.5), transparent 36%),
+    radial-gradient(circle at 92% 88%, rgba(255, 255, 255, 0.07), transparent 30%),
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1.4px);
+  background-size: cover, cover, cover, cover, cover, cover, 6px 6px;
+  position: relative;
+}
+
+.topbar {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.active-server-line {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.eyebrow {
+  margin-bottom: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-pill.online {
+  background: rgba(74, 222, 149, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(74, 222, 149, 0.22);
+}
+
+.status-pill.offline {
+  background: rgba(255, 107, 107, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(255, 107, 107, 0.22);
+}
+
+.view {
+  display: none;
+  min-height: 0;
+  padding: 24px 28px;
+  overflow: auto;
+}
+
+.view.active {
+  display: block;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-body {
+  padding: 18px;
+}
+
+.log-list {
+  height: calc(100vh - 248px);
+  overflow: auto;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+
+.log-row {
+  display: grid;
+  grid-template-columns: 82px 96px 1fr;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 5px;
+  background: var(--surface-deep);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 13px;
+}
+
+.log-type {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.terminal,
+.file-manager,
+.vpn-layout {
+  display: grid;
+  gap: 16px;
+}
+
+.vpn-layout {
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.85fr);
+  align-items: start;
+}
+
+.vpn-add-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.bot-add-form-collapsed {
+  display: none;
+}
+
+.vpn-add-form label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.bot-form-hint {
+  margin: 2px 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.bot-form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.bot-form-actions .primary-btn {
+  flex: 1;
+}
+
+#toggle-bot-form.is-hidden {
+  display: none;
+}
+
+.vpn-profile-list,
+.bot-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.vpn-profile-card {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-deep);
+}
+
+.vpn-profile-head,
+.vpn-endpoint-row,
+.vpn-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vpn-profile-head div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.vpn-profile-head strong,
+.vpn-profile-head small,
+.vpn-secret-line {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vpn-profile-head small,
+.vpn-secret-line {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.vpn-secret-line {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface-input);
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.vpn-endpoint-row label {
+  min-width: 0;
+  flex: 1;
+}
+
+.vpn-latency {
+  min-width: 116px;
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  gap: 4px 8px;
+  align-items: center;
+}
+
+.vpn-latency small {
+  grid-column: 2;
+  color: var(--muted);
+}
+
+.vpn-actions {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.compat-details {
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.compat-details summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  list-style: revert;
+}
+
+.compat-details summary:hover {
+  color: var(--text);
+}
+
+.compat-details[open] summary {
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.compat-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.compat-card {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-deep);
+}
+
+.compat-card span {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.compat-card small {
+  color: var(--muted);
+}
+
+.vpn-note {
+  margin-top: 16px;
+  line-height: 1.5;
+}
+
+.remote-vpn-card {
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-deep);
+}
+
+.compact-panel-header {
+  padding: 12px;
+}
+
+.compact-panel-header h3 {
+  font-size: 15px;
+}
+
+.remote-vpn-info {
+  padding: 12px;
+}
+
+.vpn-full-routing-controls {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) repeat(4, auto);
+  gap: 8px;
+  align-items: center;
+  margin: 0 12px 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.remote-vpn-card > .vpn-note {
+  margin: 0 12px 12px;
+}
+
+@media (max-width: 1120px) {
+  .vpn-full-routing-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.remote-vpn-log,
+.bot-log {
+  max-height: 220px;
+  overflow: auto;
+  margin: 0 12px 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface-terminal);
+  color: #c9cdd2;
+  white-space: pre-wrap;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.routing-preflight {
+  display: grid;
+  gap: 12px;
+  margin: 0 12px 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface-input);
+}
+
+.routing-preflight h3 {
+  font-size: 15px;
+}
+
+.warning-list {
+  display: grid;
+  gap: 8px;
+}
+
+.warning-list p {
+  padding: 10px;
+  border: 1px solid var(--warning-border);
+  border-radius: 5px;
+  color: var(--warning-text);
+  background: var(--warning-bg);
+  line-height: 1.45;
+}
+
+.command-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  gap: 10px;
+}
+
+.terminal-output {
+  min-height: 390px;
+  max-height: calc(100vh - 286px);
+  overflow: auto;
+  white-space: pre-wrap;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface-terminal);
+  color: var(--text-code);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.history-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.history-chip {
+  min-height: 30px;
+  padding: 0 10px;
+  background: var(--panel-3);
+  color: var(--text-soft);
+  font-size: 12px;
+}
+
+.terminal-hint {
+  margin: 0;
+  font-size: 12px;
+}
+
+.terminal-screen {
+  min-height: 390px;
+  max-height: calc(100vh - 286px);
+  overflow: auto;
+  white-space: pre-wrap;
+  /* break-all split words mid-character even when a normal space was
+     available, mangling wrapped output. overflow-wrap: anywhere only breaks
+     a token when it genuinely can't fit, so ordinary lines wrap on word
+     boundaries and only very long unbroken strings (hashes, URLs) get split. */
+  word-break: normal;
+  overflow-wrap: anywhere;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface-terminal);
+  color: var(--text-code);
+  font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  cursor: text;
+  outline: none;
+}
+
+.terminal-screen:focus {
+  border-color: var(--blue);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  /* Thin vertical bar (caret) instead of a full character-wide block, so it
+     sits between characters and never hides the glyph underneath it. The
+     negative margins keep it from nudging the following text sideways. */
+  width: 2px;
+  height: 15px;
+  margin: 0 -1px;
+  vertical-align: text-bottom;
+  background: var(--text);
+  animation: terminal-blink 1s step-end infinite;
+}
+
+@keyframes terminal-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.file-toolbar {
+  align-items: flex-start;
+}
+
+.path-group {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.path-group strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.file-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.drop-hint {
+  margin: 0 0 10px;
+  font-size: 12px;
+}
+
+.file-list {
+  min-height: 360px;
+  max-height: calc(100vh - 260px);
+  overflow: auto;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  border: 1px dashed transparent;
+  border-radius: 5px;
+  transition: border-color 0.1s ease, background 0.1s ease;
+}
+
+.file-list.drag-over {
+  border-color: var(--blue);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.file-row {
+  width: 100%;
+  min-height: 46px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: var(--surface-deep);
+  transition: border-color 0.1s ease;
+}
+
+.file-row:hover,
+.file-row.selected {
+  border-color: #454b52;
+}
+
+.file-open {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 92px 138px;
+  gap: 12px;
+  align-items: center;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.file-select {
+  min-height: 32px;
+  padding: 0 10px;
+}
+
+.file-kind {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.file-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-meta {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: right;
+}
+
+.file-preview-modal {
+  width: min(860px, calc(100vw - 64px));
+}
+
+.host-verification-modal {
+  width: min(560px, calc(100vw - 64px));
+}
+
+.fingerprint-box {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface-input);
+}
+
+.fingerprint-box span {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.fingerprint-box strong {
+  overflow-wrap: anywhere;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.preview-header {
+  padding: 0 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.preview-header h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 16px;
+}
+
+.file-preview {
+  min-height: 420px;
+  max-height: calc(100vh - 260px);
+  overflow: auto;
+  white-space: pre-wrap;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface-terminal);
+  color: var(--text-code);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+:root[data-theme='light'] body,
+:root[data-theme='light'] .login-screen,
+:root[data-theme='light'] .content {
+  background-image: none;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.info-list {
+  display: grid;
+  gap: 14px;
+}
+
+.compact-info {
+  margin-top: 18px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.info-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.info-label {
+  color: var(--muted);
+}
+
+.info-value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal {
+  width: 420px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.modal-body {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+}
+
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.checkbox-row {
+  display: flex;
+  grid-template-columns: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-row span {
+  color: var(--muted);
+}
+
+/* The VPN screen's two-column layout (profiles + engine/compatibility) needs
+   noticeably more room than the general 980px breakpoint below - below this
+   width the right column gets squeezed under its comfortable minimum and
+   long values (bundled binary path, button rows) wrap awkwardly instead of
+   cleanly stacking. This is what "looks broken when the window isn't
+   fullscreen" was: at the default/typical window width the two columns were
+   still active but too cramped. */
+@media (max-width: 1300px) {
+  .vpn-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vpn-profile-head,
+  .vpn-endpoint-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 980px) {
+  body {
+    min-width: 0;
+  }
+
+  .login-layout {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px 0;
+  }
+
+  .saved-server-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .saved-server-actions,
+  .topbar-actions,
+  .file-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* A cheap, compositor-only "pulse": animating opacity on a small overlay
+   layer instead of animating filter(brightness/contrast) on the whole
+   viewport. Filter animation forces the browser to repaint the full
+   multi-layer gradient background every frame; opacity on a plain overlay
+   does not. */
+body::before,
+.login-screen::before,
+.content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  animation: bg-pulse 6s ease-in-out infinite;
+}
+
+@keyframes bg-pulse {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.05;
+  }
+}

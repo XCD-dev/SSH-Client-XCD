@@ -1,0 +1,84 @@
+{
+  "name": "xcd-ssh-client",
+  "version": "2.0.0",
+  "description": "Cross-platform desktop SSH client with terminal, SFTP, and remote administration tools.",
+  "author": "XCD",
+  "desktopName": "com.desktopsshclient.app",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "node scripts/start-electron.js",
+    "test": "node --test test/*.test.js",
+    "lint": "node --check scripts/start-electron.js && node --check src/main/main.js && node --check src/main/preload.js && node --check src/main/services/sshService.js && node --check src/main/services/vpnService.js && node --check src/main/modules/systemInfo.js && node --check src/main/modules/packages.js && node --check src/main/modules/fileManager.js && node --check src/main/modules/serverManager.js && node --check src/main/modules/sessionManager.js && node --check src/main/modules/knownHosts.js && node --check src/main/modules/vpnManager.js && node --check src/main/modules/remoteVpnManager.js && node --check src/main/modules/botManager.js && node --check src/renderer/renderer.js && node --check src/main/modules/userDataMigration.js",
+    "pack": "electron-builder --dir --win",
+    "dist": "electron-builder --win",
+    "pack:mac": "electron-builder --dir --mac --arm64",
+    "dist:mac": "electron-builder --mac dmg --arm64",
+    "pack:win": "electron-builder --dir --win --x64",
+    "dist:win": "electron-builder --win nsis portable --x64",
+    "dist:linux": "electron-builder --linux AppImage --x64",
+    "dist:mac:arm64": "electron-builder --mac dmg --arm64",
+    "dist:mac:x64": "electron-builder --mac dmg --x64",
+    "assets:brand": "swift scripts/generate-brand-assets.swift"
+  },
+  "build": {
+    "appId": "com.desktopsshclient.app",
+    "productName": "XCD SSH Client",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "scripts/**/*",
+      "build/**/*",
+      "bin/**/*",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "third_party_licenses/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "bin/sing-box/**/*"
+    ],
+    "npmRebuild": false,
+    "mac": {
+      "icon": "build/icon-mac.png",
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "signExecutable": false,
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "category": "Development",
+      "syncDesktopName": true,
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "ssh2": "^1.16.0"
+  },
+  "devDependencies": {
+    "electron": "^42.2.0",
+    "electron-builder": "^26.8.1"
+  }
+}
