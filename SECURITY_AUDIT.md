@@ -39,6 +39,8 @@ finding still requires monitoring and review before each release.
    flows have not been verified on every platform. The macOS and Windows
    packages are unsigned; macOS notarization is not configured. Debian packaging
    is disabled until project homepage and maintainer email metadata are available.
+   The bundled macOS sing-box is arm64; Intel Macs require an x64 sing-box on
+   `PATH` for optional VPN routing.
 
 The private GitHub repository was initialized from a clean snapshot with a
 GitHub no-reply author address. The original local checkout retains its own

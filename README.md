@@ -36,6 +36,8 @@ The client does not currently support SSH private key authentication or an SSH a
 
 Build targets are Windows x64 (NSIS installer and portable EXE), Linux x64 (AppImage), and macOS arm64 and x64 (DMG). The Debian target is disabled until a public project homepage and maintainer email are configured. Build results and remaining runtime checks are recorded in [the security audit](SECURITY_AUDIT.md).
 
+The bundled macOS sing-box executable is arm64. On Intel Macs, optional VPN routing requires a compatible x64 sing-box executable available on `PATH`.
+
 ## Development
 
 Requirements: Node.js 22.12 or newer and npm.
