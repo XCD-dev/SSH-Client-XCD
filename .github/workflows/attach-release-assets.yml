@@ -1,0 +1,33 @@
+name: Attach checked release artifacts
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Successful CI run ID
+        required: true
+        type: string
+permissions:
+  actions: read
+  contents: write
+jobs:
+  attach:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Attach Windows artifacts and checksums to draft
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run_id }}
+        run: |
+          set -euo pipefail
+          [[ "$RUN_ID" =~ ^[0-9]+$ ]]
+          test "$(gh run view "$RUN_ID" --repo "$GITHUB_REPOSITORY" --json conclusion --jq .conclusion)" = success
+          test "$(gh release view v2.0.0 --repo "$GITHUB_REPOSITORY" --json isDraft --jq .isDraft)" = true
+          gh run download "$RUN_ID" --repo "$GITHUB_REPOSITORY" --name 'xcd-release-Windows x64' --dir windows
+          shopt -s nullglob
+          assets=(windows/*.exe)
+          (( ${#assets[@]} > 0 ))
+          gh release upload v2.0.0 "${assets[@]}" --repo "$GITHUB_REPOSITORY"
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/v2.0.0" --jq '.assets[] | select(.digest != null) | "\(.digest | ltrimstr("sha256:"))  \(.name)"' > SHA256SUMS.txt
+          test -s SHA256SUMS.txt
+          gh release upload v2.0.0 SHA256SUMS.txt --repo "$GITHUB_REPOSITORY"
