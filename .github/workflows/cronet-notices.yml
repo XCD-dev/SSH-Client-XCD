@@ -1,0 +1,108 @@
+name: Cronet Windows license audit
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  notices:
+    runs-on: windows-2022
+    timeout-minutes: 25
+    steps:
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.11'
+      - name: Prepare pinned upstream sources
+        shell: pwsh
+        run: |
+          @'
+          import base64, hashlib, io, os, pathlib, tarfile, urllib.request, zipfile
+          root = pathlib.Path(os.environ['RUNNER_TEMP']) / 'cronet-src'
+          root.mkdir()
+          def get(url, sha):
+              data = urllib.request.urlopen(url, timeout=120).read()
+              assert hashlib.sha256(data).hexdigest() == sha, url
+              return data
+          archive = get('https://codeload.github.com/SagerNet/naiveproxy/tar.gz/888e114241c89b05fac4e4ee01482d7bd89ca15a', '7a81f599734857ec5381c91a53e867ad5bf3e71fc26a75e3f86306834b84604d')
+          with tarfile.open(fileobj=io.BytesIO(archive), mode='r:gz') as t:
+              for m in t:
+                  if m.issym() or m.islnk(): continue
+                  m.name = '/'.join(m.name.split('/')[1:])
+                  if m.name: t.extract(m, root, filter='data')
+          src = root / 'src'
+          gn = get('https://chrome-infra-packages.appspot.com/dl/gn/gn/windows-amd64/+/git_revision:6e8dcdebbadf4f8aa75e6a4b6e0bdf89dce1513a', '1ed6f0fa25a74495f8c433cb6ad7a2accd57e1d27eaecf9ac538b7f2c6e63da7')
+          with zipfile.ZipFile(io.BytesIO(gn)) as z: z.extractall(src / 'buildtools/win')
+          chromium = 'https://chromium.googlesource.com/chromium/src/+/refs/tags/148.0.7778.96/'
+          perfetto = 'https://chromium.googlesource.com/external/github.com/google/perfetto/+/46432bb2a7a60e10fcee516f1692e6846d098a8d/'
+          llvm = 'https://chromium.googlesource.com/external/github.com/llvm/llvm-project/compiler-rt/+/76287b5da8e155135536c8e3a67432d97d74fe3a/'
+          files = [
+            ('tools/licenses/licenses.py', chromium+'tools/licenses/licenses.py', 'b9a33e34abe0728b6d36ddf2f86067e4a3ba24fa39db450cbd6e9cc23f830a65'),
+            ('tools/licenses/spdx_writer.py', chromium+'tools/licenses/spdx_writer.py', '5db7467d288de0af9c8c6a4d9e3cd7e19ee7b04dbe5bf560a2275704eee03d37'),
+            ('third_party/protobuf/README.chromium', chromium+'third_party/protobuf/README.chromium', '851b81eab9db57177b51bd5f4b7128b295e02ebac98d4e5b1d7ca4d9768f39ac'),
+            ('third_party/protobuf/LICENSE', chromium+'third_party/protobuf/LICENSE', '6e5e117324afd944dcf67f36cf329843bc1a92229a8cd9bb573d7a83130fea7d'),
+            ('third_party/perfetto/README.chromium', perfetto+'README.chromium', 'eb9573fc984cfa5f2d411c6c48a88c6033e050ef4aec210e371af405f0fbf2bf'),
+            ('third_party/perfetto/LICENSE', perfetto+'LICENSE', 'df3384bec476fac3525c723d0c10da9ac9820ef56cbb065ec035d32e9b55bd7a'),
+            ('third_party/compiler-rt/README.chromium', chromium+'third_party/compiler-rt/README.chromium', '7beb800c7c612cd8371f90ec4f193907b980a64bbde96a2fba359936438e9e22'),
+            ('third_party/compiler-rt/src/LICENSE.TXT', llvm+'LICENSE.TXT', '1a8f1058753f1ba890de984e48f0242a3a5c29a6a8f2ed9fd813f36985387e8d'),
+          ]
+          for path, url, sha in files:
+              dest = src / path
+              assert not dest.exists(), path
+              data = base64.b64decode(urllib.request.urlopen(url+'?format=TEXT', timeout=60).read())
+              assert hashlib.sha256(data).hexdigest() == sha, path
+              dest.parent.mkdir(parents=True, exist_ok=True); dest.write_bytes(data)
+          '@ | Set-Content -Encoding utf8 "$env:RUNNER_TEMP/prepare.py"
+          python "$env:RUNNER_TEMP/prepare.py"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Generate Windows dependency notices
+        shell: pwsh
+        run: |
+          $src = "$env:RUNNER_TEMP/cronet-src/src"
+          Set-Location $src
+          $env:DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
+          $revision = python -c "import sys;sys.path.insert(0,'tools/clang/scripts');import update;print(update.PACKAGE_VERSION)"
+          New-Item -ItemType Directory -Force 'third_party/llvm-build/Release+Asserts' | Out-Null
+          [System.IO.File]::WriteAllText("$src/third_party/llvm-build/Release+Asserts/cr_build_revision", [string]::Concat($revision,[Environment]::NewLine))
+          New-Item -ItemType Directory -Force 'out/xcd-win' | Out-Null
+          @'
+          is_official_build = true
+          is_debug = false
+          is_clang = true
+          use_clang_modules = false
+          use_thin_lto = false
+          fatal_linker_warnings = false
+          treat_warnings_as_errors = false
+          is_cronet_build = true
+          use_udev = false
+          use_aura = false
+          use_ozone = false
+          use_gio = false
+          use_glib = false
+          use_kerberos = false
+          disable_zstd_filter = false
+          enable_reporting = false
+          enable_bracketed_proxy_uris = true
+          enable_quic_proxy_support = true
+          use_nss_certs = false
+          enable_backup_ref_ptr_support = false
+          enable_dangling_raw_ptr_checks = false
+          exclude_unwind_tables = true
+          enable_resource_allowlist_generation = false
+          symbol_level = 0
+          enable_dsyms = false
+          optimize_for_size = true
+          target_os = "win"
+          target_cpu = "x64"
+          use_sysroot = false
+          '@ | Set-Content -Encoding ascii 'out/xcd-win/args.gn'
+          & ./buildtools/win/gn.exe gen out/xcd-win
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python tools/licenses/licenses.py license_file "$env:GITHUB_WORKSPACE/cronet-windows-x64-notices.txt" --gn-out-dir out/xcd-win --gn-target //components/cronet:cronet --target-os win --format txt --enable-warnings 2> "$env:GITHUB_WORKSPACE/warnings.txt"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Get-Content "$env:GITHUB_WORKSPACE/warnings.txt"
+          if (Select-String -Path "$env:GITHUB_WORKSPACE/warnings.txt" -Pattern 'Error:') { exit 1 }
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: cronet-windows-license-audit
+          path: |
+            cronet-windows-x64-notices.txt
+            warnings.txt
+          if-no-files-found: error
