@@ -8,7 +8,7 @@
 
 [Русская версия](README.ru.md) · [Installation](docs/en/installation.md) · [Quick start](docs/en/quick-start.md) · [Security audit](SECURITY_AUDIT.md)
 
-> **Release status:** 2.0.0 is prepared in this source tree but has not been published. The original project source is licensed under Apache-2.0. Public distribution is held until bundled binary license and notice review is complete and all platform builds are verified. See [the audit report](SECURITY_AUDIT.md).
+> **Release notes:** Original project code is Apache-2.0; bundled dependencies have separate licenses. See [third-party notices](THIRD_PARTY_NOTICES.md) and [security audit](SECURITY_AUDIT.md) for remaining verification limits.
 
 ## Screenshots
 
