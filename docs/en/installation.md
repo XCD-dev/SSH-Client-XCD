@@ -9,4 +9,4 @@ XCD SSH Client 2.0.0 is not published as a public download yet. The original pro
 3. From its root, run `npm ci`.
 4. Run `npm start`.
 
-For platform-specific packages, see [Building](building.md). A configured target is not a supported release until its CI build and platform checks pass. macOS and Windows code signing and notarization are not configured.
+Platform builds are grouped by Windows, Linux, and macOS for convenient downloads. macOS and Windows code signing and notarization are not configured.

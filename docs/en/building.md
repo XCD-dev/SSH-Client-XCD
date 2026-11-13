@@ -16,4 +16,4 @@ npm run dist:linux     # Linux x64 AppImage
 npm run dist:mac:arm64 # macOS arm64 DMG
 ```
 
-Artifacts are written to `release/`. The Debian package target is disabled until the project homepage and public maintainer email are configured. macOS/Windows signing and notarization are not configured. The bundled sing-box/Cronet license and notice review is still in progress; do not distribute packages until it is complete.
+Artifacts are written to `release/`. The Debian package target is disabled until the project homepage and public maintainer email are configured. macOS/Windows signing and notarization are not configured. See [third-party notices](../../THIRD_PARTY_NOTICES.md) for bundled component licenses and review notes.
