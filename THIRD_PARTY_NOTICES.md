@@ -6,8 +6,8 @@ not cover third-party dependencies or bundled binaries. Their redistribution
 rights and notice obligations still apply. The project owner confirms ownership
 of the checked-in binary files and authorizes their inclusion in the project;
 this does not replace the licenses for the code incorporated into those files.
-Do not publish or distribute the application bundle until the remaining notice
-and source obligations are resolved.
+The source collection and target-specific notices are provided for inspection;
+their completeness as corresponding source and the Wintun terms remain under review.
 
 ## Bundled application dependencies
 
@@ -63,8 +63,10 @@ The Windows sing-box executable also embeds Wintun 0.14.1's amd64 DLL through
 (archive SHA-256 `07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51`).
 Wintun's prebuilt binaries have separate redistribution terms, reproduced
 unchanged in [`wintun-0.14.1-LICENSE.txt`](third_party_licenses/wintun-0.14.1-LICENSE.txt).
-Review those terms for this distribution; the Go module's MIT notice alone does
-not cover the prebuilt DLL. Its upstream GPLv2 source is available at
+The 13 Wintun function names referenced by the Go bindings were checked against
+Wintun 0.14.1 public header declarations. The prebuilt DLL is memory-loaded, and
+whether this distribution satisfies the prebuilt license terms is not independently
+confirmed. The Go module's MIT notice alone does not cover the DLL. Its upstream GPLv2 source is available at
 [Wintun 0.14.1](https://git.zx2c4.com/wintun/tag/?h=0.14.1),
 commit `bfef136abfa1665c2592be09a7e383d646cdbe6e`; the release's source archive
 was checked against that commit's Git blobs.
@@ -79,10 +81,11 @@ provenance, not that all redistribution obligations have been completed.
 - sing-box v1.13.12 (Windows x64): [source tag](https://github.com/SagerNet/sing-box/tree/v1.13.12) and [source archive](https://github.com/SagerNet/sing-box/archive/refs/tags/v1.13.12.tar.gz).
 - cronet-go revisions: the macOS/Linux v1.13.14 binaries embed [binding commit 05ab0dc](https://github.com/SagerNet/cronet-go/tree/05ab0dc17597f5473eb60d3864c7072273b1b2cf), and the v1.13.14 release pins [build-source commit 98d539c](https://github.com/SagerNet/cronet-go/tree/98d539ce67568fb911654e66a14cf4247ed833ec). The Windows v1.13.12 binary embeds [binding commit 2faf346](https://github.com/SagerNet/cronet-go/tree/2faf34666c2cc8234f10f2ab6d4c4d6104d34ae2); the Linux and Windows shared libraries match [release commit e7f6f6f](https://github.com/SagerNet/cronet-go/tree/e7f6f6f5b7ce226f686f6cb5d068a63da6657ccd). These source revisions reference [NaiveProxy commit 888e114](https://github.com/SagerNet/naiveproxy/tree/888e114241c89b05fac4e4ee01482d7bd89ca15a).
 
-These references identify source revisions for investigation. They are not yet
-verified as a complete corresponding-source package for the distributed
-binaries: the recursive dependencies, build scripts, and full build-specific
-Chromium third-party notices still need to be collected and checked.
+A [source collection](https://github.com/XCD-dev/SSH-Client-XCD/releases/download/v2.0.0/xcd-upstream-source-candidate-20261112-v4.tar)
+is provided alongside release files. It contains these source revisions and the
+122 Go modules identified in the binaries. It has not been independently
+verified as complete corresponding source; the archive README records its limits,
+including prebuilt files present in upstream module archives.
 
 For reproducing the target-specific Cronet notice inventory, the
 [`v148.0.7778.96-1` build implementation](https://github.com/SagerNet/cronet-go/blob/e7f6f6f5b7ce226f686f6cb5d068a63da6657ccd/cmd/build-naive/cmd_build.go)

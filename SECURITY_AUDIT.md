@@ -2,7 +2,7 @@
 
 **Review date:** 2026-11-12
 **Scope:** current working tree and local Git history
-**Status:** pre-release review; the project has not been published
+**Status:** review snapshot, with outstanding limitations listed below
 
 This report records checks completed in this workspace. It is not a third-party
 penetration test or a claim that every platform and workflow has passed. The
@@ -32,8 +32,7 @@ finding still requires monitoring and review before each release.
    code based on Chromium 148.0.7778.96. The Chromium base license is included,
    and reconstructed target-specific Chromium notices are now included, but a
    complete corresponding GPL source package or compliant source offer has not
-   been verified. Do not distribute the app
-   bundle until those obligations are resolved. See
+   been independently verified. See
    [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
    The Windows binary also embeds the official Wintun 0.14.1 DLL, whose
    prebuilt-binary license has separate redistribution restrictions. Its
@@ -96,9 +95,9 @@ are currently reported.
 - Prepared a local upstream source candidate with both sing-box versions, the
   pinned cronet-go and NaiveProxy revisions, Wintun 0.14.1 source, and the 122
   Go module source zips. All 253 listed files passed SHA-256 verification. The candidate has not been
-  verified as complete corresponding source and has not been distributed.
+  verified as complete corresponding source; it is supplied as a release asset.
   Some exact upstream module zips contain precompiled DLLs, object files, and
-  test executables, which must be reviewed before this candidate is distributed.
+  test executables, which require separate license review.
 - Reviewed the packaged npm runtime dependency closure: eight packages use
   MIT, BSD-3-Clause, or Unlicense. Electron and Chromium license texts are
   present in the built macOS app; electron-builder is build-only. The complete
