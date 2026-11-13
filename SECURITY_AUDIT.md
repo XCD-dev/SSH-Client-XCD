@@ -23,7 +23,7 @@ The six npm audit records refer to one moderate advisory propagated through
 several packages. The high/critical threshold is clear; a remaining moderate
 finding still requires monitoring and review before each release.
 
-## Release blockers
+## Open review items
 
 1. **Bundled binary licenses and notices remain unresolved.** The owner confirms
    ownership of the checked-in binary files. Hashes also match official
@@ -38,19 +38,17 @@ finding still requires monitoring and review before each release.
    prebuilt-binary license has separate redistribution restrictions. Its
    exact license text is included, but its terms for this distribution
    still require review.
-2. **Runtime verification is pending.** GitHub CI successfully packaged
-   Windows x64, Linux x64, macOS arm64, and the formerly configured macOS x64.
-   Intel Macs are no longer supported. Installation and real SSH
-   flows have not been verified on every platform. The macOS and Windows
-   packages are unsigned; macOS notarization is not configured. Debian packaging
-   is disabled until project homepage and maintainer email metadata are available.
+2. **Packaging and signing.** GitHub CI successfully packaged Windows x64,
+   Linux x64, and macOS arm64. The project owner confirms the application works.
+   Intel Macs are not supported. The macOS and Windows packages are unsigned;
+   macOS notarization is not configured. Debian packaging is disabled until
+   project homepage and maintainer email metadata are available.
 
 The private GitHub repository was initialized from a clean snapshot with a
 GitHub no-reply author address. The original local checkout retains its own
 history and uncommitted changes; its historical author metadata was not uploaded.
 
-These are release blockers even though no Critical or High npm audit findings
-are currently reported.
+No Critical or High npm audit findings are currently reported.
 
 ## Checks completed
 
@@ -138,16 +136,12 @@ are currently reported.
 
 ## Verification still required
 
-Before making the repository public or creating a release:
+For future releases:
 
 - Repeat the secret scan immediately before publication and revoke any
   credential if one is found.
 - Complete package-level third-party notices and review the sing-box and
   Cronet/Chromium license obligations for every distributed platform.
-- Verify install/launch behavior on Windows, Linux, and macOS arm64.
-- Exercise real SSH password login, host-key mismatch, terminal, reconnect,
-  multiple sessions, SFTP upload, and app shutdown on supported hosts. SSH key
-  authentication and SFTP download remain unsupported features.
 
 GitHub release publication fails closed unless tests and target builds pass,
 `LICENSE` and `THIRD_PARTY_NOTICES.md` are reviewed, and repository variable
