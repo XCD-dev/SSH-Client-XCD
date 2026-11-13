@@ -30,8 +30,9 @@ finding still requires monitoring and review before each release.
    SagerNet release payloads, whose code retains its own terms: GPL-3.0-or-later
    plus sing-box's name/association restriction, and GPL-3.0-or-later Cronet
    code based on Chromium 148.0.7778.96. The Chromium base license is included,
-   but the full build-specific third-party notice inventory and corresponding
-   GPL source or compliant source offer are not. Do not distribute the app
+   and reconstructed target-specific Chromium notices are now included, but a
+   complete corresponding GPL source package or compliant source offer has not
+   been verified. Do not distribute the app
    bundle until those obligations are resolved. See
    [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
    The Windows binary also embeds the official Wintun 0.14.1 DLL, whose
@@ -89,8 +90,9 @@ are currently reported.
   each downloaded module checksum matched the metadata embedded in sing-box.
   Collected 35 license and notice files from the pinned Chromium-derived source
   tree and verified the 31 unique license paths referenced in its metadata.
-  These source-tree inventories do not establish the exact compiled dependency
-  graph of each Cronet library.
+  In addition, Chromium license tooling was run on reconstructed GN graphs for
+  macOS arm64, Linux x64, and Windows x64; target-specific notices are included.
+  They were generated separately and are not original upstream release assets.
 - Prepared a local upstream source candidate with both sing-box versions, the
   pinned cronet-go and NaiveProxy revisions, Wintun 0.14.1 source, and the 122
   Go module source zips. All 253 listed files passed SHA-256 verification. The candidate has not been

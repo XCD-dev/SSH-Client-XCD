@@ -24,8 +24,10 @@ hashes.
 The app bundle includes the package-provided MIT, BSD-3-Clause, and Unlicense
 texts above, plus Electron and Chromium license files. The GPL-3.0 text, the
 upstream sing-box license notice, and the cronet-go license text are included
-under [`third_party_licenses/`](third_party_licenses/). Cronet's full
-Chromium-derived notice inventory is still pending. The Linux and Windows shared
+under [`third_party_licenses/`](third_party_licenses/). Target-specific Chromium-derived notices have been generated from reconstructed
+GN dependency graphs: [macOS arm64](third_party_licenses/cronet-macos-arm64-notices.txt),
+[Linux x64](third_party_licenses/cronet-linux-x64-notices.txt), and
+[Windows x64](third_party_licenses/cronet-windows-x64-notices.txt). The Linux and Windows shared
 libraries match the Cronet v148.0.7778.96-1 release. The macOS arm64 sing-box
 is CGO-enabled and includes a Cronet library module, so it requires its own
 notice review. The Chromium BSD-style license is included as
@@ -35,8 +37,9 @@ upstream version and license are recorded in [NaiveProxy's pinned version
 file](https://github.com/SagerNet/naiveproxy/blob/888e114241c89b05fac4e4ee01482d7bd89ca15a/CHROMIUM_VERSION)
 and [Chromium source license](https://github.com/SagerNet/naiveproxy/blob/888e114241c89b05fac4e4ee01482d7bd89ca15a/src/LICENSE).
 Chromium documents its third-party credits as output generated from dependency
-metadata by its license tooling; the required output for this Cronet build is
-not present in the release assets.
+metadata by its license tooling; the original release assets do not include the generated output. The files
+above were generated separately from the pinned source and build flags, not
+provided by the upstream release.
 
 For review, 35 upstream license, copyright, and notice files found in the pinned
 source tree are collected in [the Chromium source license index](third_party_licenses/chromium-source/INDEX.md).
@@ -52,7 +55,7 @@ omit notices stored under other names.
 | `bin/sing-box/macos/sing-box` | Byte-for-byte match to SagerNet sing-box v1.13.14 `darwin-arm64` release archive. Archive and payload hashes are in [`bin/sing-box/README.md`](bin/sing-box/README.md). | GPL-3.0-or-later plus upstream name/association restriction. The CGO-enabled binary includes a Cronet library module and also needs its Chromium-derived notices reviewed. See [`sing-box-LICENSE.txt`](third_party_licenses/sing-box-LICENSE.txt) and [`GPL-3.0.txt`](third_party_licenses/GPL-3.0.txt). |
 | `bin/sing-box/linux/sing-box` | Byte-for-byte match to SagerNet sing-box v1.13.14 `linux-amd64` release archive. | Same sing-box license terms as above. |
 | `bin/sing-box/win32/sing-box.exe` | Byte-for-byte match to SagerNet sing-box v1.13.12 `windows-amd64` release archive. | Same sing-box license terms as above. |
-| `bin/sing-box/{linux,win32}/libcronet.*` | Byte-for-byte match to the Linux v1.13.14 and Windows v1.13.12 sing-box release archives. Both pinned `cronet-go` revisions use Chromium 148.0.7778.96; see [`bin/sing-box/README.md`](bin/sing-box/README.md). | `cronet-go` is GPL-3.0-or-later; its license text is [`cronet-go-LICENSE.txt`](third_party_licenses/cronet-go-LICENSE.txt). Chromium's BSD-style license is included. The official Cronet release assets contain the shared libraries but no generated Chromium third-party credits page. That full, build-specific notice inventory remains outstanding. |
+| `bin/sing-box/{linux,win32}/libcronet.*` | Byte-for-byte match to the Linux v1.13.14 and Windows v1.13.12 sing-box release archives. Both pinned `cronet-go` revisions use Chromium 148.0.7778.96; see [`bin/sing-box/README.md`](bin/sing-box/README.md). | `cronet-go` is GPL-3.0-or-later; its license text is [`cronet-go-LICENSE.txt`](third_party_licenses/cronet-go-LICENSE.txt). Chromium's BSD-style license is included. The official Cronet release assets contain the shared libraries but no generated Chromium third-party credits page. Target-specific notices were generated separately from the reconstructed GN dependency graphs and are linked above. |
 
 The Windows sing-box executable also embeds Wintun 0.14.1's amd64 DLL through
 `github.com/sagernet/sing-tun` v0.8.9. Its embedded bytes match the DLL in the
@@ -81,14 +84,17 @@ verified as a complete corresponding-source package for the distributed
 binaries: the recursive dependencies, build scripts, and full build-specific
 Chromium third-party notices still need to be collected and checked.
 
-For reproducing the missing target-specific Cronet notice inventory, the
+For reproducing the target-specific Cronet notice inventory, the
 [`v148.0.7778.96-1` build implementation](https://github.com/SagerNet/cronet-go/blob/e7f6f6f5b7ce226f686f6cb5d068a63da6657ccd/cmd/build-naive/cmd_build.go)
 generates an architecture-specific GN output directory and builds the `cronet`
 target for the Windows DLL and Linux shared library. The macOS static library's
 [build-source revision](https://github.com/SagerNet/cronet-go/blob/98d539ce67568fb911654e66a14cf4247ed833ec/cmd/build-naive/cmd_build.go)
-uses the `cronet_static` target. The source-tree collection above must be
-checked against each matching target's generated GN dependency graph; an Android
-or Electron notice list is not a substitute.
+uses the `cronet_static` target. The notices linked above were generated against the matching target graphs.
+The upstream source snapshot omitted metadata for Perfetto and protobuf; exact
+upstream metadata and license files were restored for the generation. Linux and
+Windows also restore compiler-rt metadata and license files. The generation
+uses Chromium 148 license tooling and pinned upstream build settings; it is a
+reconstruction rather than a notice file shipped by the original binary vendor.
 
 The module metadata embedded in the binaries was extracted with `go version -m`
 and is recorded in [the dependency inventory](docs/upstream/sing-box-dependencies.txt).
@@ -105,5 +111,5 @@ Notices stored under other names and other distribution obligations still need r
 - Review GPL-3.0-or-later obligations, the upstream sing-box name/association
   restriction, and Cronet's Chromium-derived notices for each distributed
   platform. Provide corresponding source or a compliant source offer for the
-  GPL-covered binaries, and obtain the full Chromium third-party notice output
-  for the pinned Cronet build before distributing the application bundle.
+  GPL-covered binaries, and confirm that the reconstructed Chromium notices cover the distributed
+  builds before distributing the application bundle.

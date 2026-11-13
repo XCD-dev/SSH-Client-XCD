@@ -16,3 +16,5 @@
 third_party_licenses/go-modules/** -text
 third_party_licenses/chromium-source/** -text
 third_party_licenses/wintun-0.14.1-LICENSE.txt -text
+
+third_party_licenses/cronet-*-notices.txt -text
